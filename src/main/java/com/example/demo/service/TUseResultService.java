@@ -37,9 +37,15 @@ public class TUseResultService {
     	tUseResultRepository.save(tUseResult);
     }
 
-	public TUseResult convertToEntity(TUseResultForm form) {
+	public TUseResult convertToEntity(TUseResultForm form) throws Exception{
 		MUser user = mUserService.findByUserCd(form.getUserCd());
+		if (user == null) {
+			throw new Exception("user not found");
+		}
 		MMusic music = mMusicService.findByMusicCd(form.getMusicCd());
+		if (music == null ) {
+			throw new Exception ("music not found");
+		}
 		if (form.getId() == null) {
 			return new TUseResult(user,music,form.getAmount(),form.getUseDate(),form.getUsePlace(),LocalDate.now(),null);
 		} else {

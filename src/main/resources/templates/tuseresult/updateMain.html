@@ -11,6 +11,8 @@
 <body>
 
 <h1>実績データ　更新</h1>
+<div th:if="${error}" th:text="${error}" class="error"></div>
+
 <form method="post" action="index.html" th:action="@{/tuseresult/updateComplete}" th:object="${tUseResultForm}">
     <table border="1">
         <tr>

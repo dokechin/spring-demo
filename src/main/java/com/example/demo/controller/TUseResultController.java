@@ -54,7 +54,14 @@ public class TUseResultController {
             model.addAttribute("tUseResultForm", tUseResultForm);
             return "/tuseresult/insertMain";
         }
-        TUseResult tUseResult = tUseResultService.convertToEntity(tUseResultForm);
+    	TUseResult tUseResult = null;
+        try {
+        	tUseResult = tUseResultService.convertToEntity(tUseResultForm);
+        } catch (Exception ex) {
+        	model.addAttribute("error", ex.getMessage());
+            model.addAttribute("tUseResultForm", tUseResultForm);
+            return "/tuseresult/insertMain";
+        }
         // 顧客をDBに追加する
         tUseResultService.save(tUseResult);
         // 「/」にリダイレクトする
@@ -84,7 +91,14 @@ public class TUseResultController {
             model.addAttribute("tUseResultForm", tUseResultForm);
             return "/tuseresult/updateMain";
         }
-        TUseResult tUseResult = tUseResultService.convertToEntity(tUseResultForm);
+    	TUseResult tUseResult = null;
+        try {
+        	tUseResult = tUseResultService.convertToEntity(tUseResultForm);
+        } catch (Exception ex) {
+        	model.addAttribute("error", ex.getMessage());
+            model.addAttribute("tUseResultForm", tUseResultForm);
+            return "/tuseresult/updateMain";
+        }
         // 顧客をDBに追加する
         tUseResultService.save(tUseResult);
         // 「/」にリダイレクトする
