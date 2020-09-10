@@ -1,35 +1,34 @@
-# Spring boot simple demo
+＃スプリングブートの簡単なデモ
 
-La demo usa:
-* Maven (gestor de dependencias)
-* Base de datos empotrada H2
-* Thymeleaf (para las plantillas del frontend)
-* JPA (para conseguir mayor nivel de abstracción sobre la base de datos)
-* Spring security para la gestión de la autenticación
+デモは以下を使用します：
+* Maven（依存関係マネージャー）
+* H2組み込みデータベース
+* Thymeleaf（フロントエンドテンプレート用）
+* JPA（データベースでより高いレベルの抽象化を実現するため）
 
-## Instalar
+##インストール
 
-1. Instalar eclipse 4.7
-2. Help->Marketplace e instalar "spring tools"
-3. Para facilitar la implementación del frontend se aconseja instalar "eclipse web developer" (http://www.eclipse.org/webtools/)
-4. Desde eclipse importar el proyecto. File->Import->Project y seleccionar "Import maven project"
+1. Eclipse 2020-06をインストールする
+2.ヘルプ->マーケットプレイスと「スプリングツール」のインストール
+3.フロントエンドの実装を容易にするために、「eclipse web developer」（http://www.eclipse.org/webtools/）をインストールすることをお勧めします
+4. Eclipseからプロジェクトをインポートします。 「ファイル」->「インポート」->「プロジェクト」を選択し、「Mavenプロジェクトのインポート」を選択します
 
+##実行
 
-## Ejecutar
+1. Eclipseからサーバーを起動します（プロジェクトを右クリックして[Run as-> Spring Boot App]を選択）。
+2.ブラウザからアドレス「localhost：8888」にアクセスします
 
-1. Arrancar servidor (Botón derecho en el proyecto y Run as->spring boot app) desde eclipse
-2. Acceder a la dirección "localhost:3029" desde el navegador
+##助けて
 
-## Ayuda
+*モデル（モデル）：src/main/java/com/example/demo/model folder
+*テンプレート（ビュー）：src/main/resources/templates folder
+*コントローラー（コントローラー）：src/main/java/com/example/demo/controller folder
+*メイン：src / main / javaフォルダーのDemoApplicationクラス
+*データベースの内容を表示して管理するには、アドレスlocalhost:8888/consoleにアクセスします
+*構成パラメーター：/src/main/resourcesフォルダーのapplication.propertiesファイル
+*スタイルファイル（* .css）は、src/main/resources/static/css /フォルダーに配置する必要があります。 staticフォルダーとcssフォルダーが存在しない場合は作成します。
+*JavaScriptファイル（* .js）は、src / main/resources/static/js /フォルダーに配置する必要があります。 staticフォルダーとjsフォルダーが存在しない場合は作成します。
+##テストを実行する（JUnitおよびMockito）
 
-* Model (modelo) : carpeta src/main/java/com/example/demo/model
-* Templates (vista): carpeta src/main/resources/templates
-* Controllers (controlador): carpeta src/main/java/com/example/demo/controller
-* Main: clase DemoApplication en la carpeta src/main/java
-* Para ver el contenido de la base de datos y gestionarla acceder a la dirección localhost:3029/console
-* Parámetros de configuración: fichero application.properties en la carpeta /src/main/resources
-* Los ficheros de estilos (*.css) deben de situarse en la carpeta src/main/resources/static/css/. Crear las carpetas static y css si no existen.
-* Los ficheros JavaScript (*.js) deben de situarse en la carpeta src/main/resources/static/js/. Crear las carpetas static y js si no existen.
-## Ejecutar tests (JUnit y Mockito)
+1.プロジェクトを右クリックして、「実行」->「JUnitテスト」
 
-1. Botón derecho en el proyecto y Run as -> JUnit test
