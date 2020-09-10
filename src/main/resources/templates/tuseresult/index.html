@@ -16,7 +16,6 @@
 
 
 <!--/* TODO 4-26 sec:authorize属性を利用して、ADMINロールのみ下記のリンクを表示する */-->
-<a href="tuseresult/insertMain.html" th:href="@{insertMain}"     >新規追加へ</a>
 
 <table>
     <tr>
@@ -64,9 +63,11 @@
     </tr>
     <!--*/-->
 </table>
-
-<form th:action="@{/}" action="menu.html" method="get">
-    <input type="submit" value="メニューへ戻る">
+<form th:action="@{/tuseresult/insertMain}" action="menu.html" method="get">
+    <input type="submit" value="新規登録">
 </form>
+
+<a href="index.html" th:href="@{/}">メニューに戻る</a>
+
 </body>
 </html>

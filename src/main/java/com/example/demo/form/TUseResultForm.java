@@ -3,25 +3,16 @@ package com.example.demo.form;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import com.example.demo.model.MMusic;
-import com.example.demo.model.MUser;
 import com.example.demo.model.TUseResult;
-import com.example.demo.service.MMusicService;
-import com.example.demo.service.MUserService;
-
 public class TUseResultForm {
-
-	@Autowired
-	private MUserService mUserService;
-
-	@Autowired
-	private MMusicService mMusicService;
 
     private Integer id;
     // TODO 3-01 検証アノテーションを付加する（空白不可、長さ1から32まで）
@@ -34,9 +25,12 @@ public class TUseResultForm {
     @Length(min = 1, max = 3)
     private String musicCd;
 
+    @NotNull
+    @Min(1)
+    @Max(99999)
     private BigDecimal amount;
 
-    @DateTimeFormat(pattern = "uuuu-MM-dd")
+    @DateTimeFormat(pattern="uuuu/MM/dd")
     private LocalDate useDate;
 
     @Length(min = 1, max = 20)
@@ -69,11 +63,7 @@ public class TUseResultForm {
     			src.getUsePlace());
     }
 
-	public TUseResult convertToEntity() {
-		MUser user = mUserService.findByUserCd(getUserCd());
-		MMusic music = mMusicService.findByMusicCd(getMusicCd());
-		return new TUseResult(user,music,getAmount(),getUseDate(),getUsePlace(),LocalDate.now(),null);
-	}
+
 	public Integer getId() {
 		return id;
 	}

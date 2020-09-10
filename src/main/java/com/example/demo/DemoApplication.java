@@ -49,9 +49,9 @@ public class DemoApplication {
 			Libro l1 = libroService.getByName("Introduccion a Spring");
 			Libro libroInexistente = libroService.getByName("NONAME");
 
-			MUser user = new MUser(new Integer(1), "1", "秋元康","1",LocalDate.of(1997, 1, 23), LocalDate.of(1997, 1, 24));
+			MUser user = new MUser("1", "秋元康","1",LocalDate.of(1997, 1, 23), LocalDate.of(1997, 1, 24));
 			mUserService.save(user);
-			MMusic music = new MMusic(new Integer(1), "1", "川の流れのように",
+			MMusic music = new MMusic("1", "川の流れのように",
 					"1",new BigDecimal(1002),
 					"2",new BigDecimal(102),
 					"3",new BigDecimal(522),
