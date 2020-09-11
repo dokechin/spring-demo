@@ -13,9 +13,10 @@ import javax.persistence.Id;
 @Entity
 public class MUser {
 
-    // TODO 1-06 主キーであることを示すアノテーションを付加する
-@GeneratedValue(strategy = GenerationType.AUTO)
+// 主キーであることを示すアノテーション
+// 主キーの自動生成用のアノテーション
 @Id
+@GeneratedValue(strategy = GenerationType.AUTO)
     private Integer userId;
 
     private String userCd;

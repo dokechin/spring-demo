@@ -4,18 +4,13 @@
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
-    <title>Customers</title>
+    <title>実績データ一覧</title>
     <link rel="stylesheet" href="../static/css/style.css"
           th:href="@{/css/style.css}">
 </head>
 <body>
 
 <h1>実績データ一覧</h1>
-
-<!--/* TODO 4-25 sec:authentication属性を利用して、ログイン中のユーザー名（principal.account.name）を表示する */-->
-
-
-<!--/* TODO 4-26 sec:authorize属性を利用して、ADMINロールのみ下記のリンクを表示する */-->
 
 <table>
     <tr>
@@ -28,11 +23,9 @@
         <th>利用日</th>
     </tr>
 
-    <!--/* TODO 3-24 顧客一覧画面を確認する（変更不要） */-->
-
     <tr th:each="tuseresult : ${tuseresults}" th:object="${tuseresult}">
         <td>
-        	<a href="tuseresult/updateMain.html"
+        	<a href="updateMain.html"
           th:href="@{|/tuseresult/updateMain/*{useResultId}|}"
           th:text="*{useResultId}">1</a></td>
         <td th:text="*{user.userId}">111</td>
@@ -63,11 +56,11 @@
     </tr>
     <!--*/-->
 </table>
-<form th:action="@{/tuseresult/insertMain}" action="menu.html" method="get">
+<form th:action="@{/tuseresult/insertMain}" action="insertMain.html" method="get">
     <input type="submit" value="新規登録">
 </form>
 
-<a href="index.html" th:href="@{/}">メニューに戻る</a>
+<a href="../index.html" th:href="@{/}">メニューに戻る</a>
 
 </body>
 </html>

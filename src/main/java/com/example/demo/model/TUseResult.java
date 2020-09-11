@@ -15,14 +15,17 @@ import javax.persistence.OneToOne;
 @Entity
 public class TUseResult {
 
-    // TODO 1-06 主キーであることを示すアノテーションを付加する
-@GeneratedValue(strategy = GenerationType.AUTO)
+// 主キーであることを示すアノテーション
+// 主キーの自動生成用のアノテーション
 @Id
+@GeneratedValue(strategy = GenerationType.AUTO)
     private Integer useResultId;
 
+// リレーション定義のアノテーション
 @OneToOne
     private MUser user;
 
+//リレーション定義のアノテーション
 @OneToOne
     private MMusic music;
 
@@ -37,8 +40,6 @@ public class TUseResult {
     private LocalDate updateDate;
 
     public TUseResult() {}
-
-
 
     public TUseResult(Integer useResultId, MUser user, MMusic music, BigDecimal amount, LocalDate useDate, String usePlace,
 			LocalDate insertDate, LocalDate updateDate) {
@@ -57,102 +58,69 @@ public class TUseResult {
     	this(null, user,music,amount, useDate,usePlace,insertDate, updateDate);
 	}
 
-
     public Integer getUseResultId() {
 		return useResultId;
 	}
-
-
 
 	public void setUseResultId(Integer useResultId) {
 		this.useResultId = useResultId;
 	}
 
-
-
 	public MUser getUser() {
 		return user;
 	}
-
-
 
 	public void setUser(MUser user) {
 		this.user = user;
 	}
 
-
-
 	public MMusic getMusic() {
 		return music;
 	}
-
-
 
 	public void setMusicCd(MMusic music) {
 		this.music = music;
 	}
 
-
-
 	public BigDecimal getAmount() {
 		return amount;
 	}
-
-
 
 	public void setAmount(BigDecimal amount) {
 		this.amount = amount;
 	}
 
-
-
 	public LocalDate getUseDate() {
 		return useDate;
 	}
-
-
 
 	public void setUseDate(LocalDate useDate) {
 		this.useDate = useDate;
 	}
 
-
-
 	public String getUsePlace() {
 		return usePlace;
 	}
-
-
 
 	public void setUsePlace(String usePlace) {
 		this.usePlace = usePlace;
 	}
 
-
-
 	public LocalDate getInsertDate() {
 		return insertDate;
 	}
-
-
 
 	public void setInsertDate(LocalDate insertDate) {
 		this.insertDate = insertDate;
 	}
 
-
-
 	public LocalDate getUpdateDate() {
 		return updateDate;
 	}
 
-
-
 	public void setUpdateDate(LocalDate updateDate) {
 		this.updateDate = updateDate;
 	}
-
-
 
 	@Override
     public String toString() {

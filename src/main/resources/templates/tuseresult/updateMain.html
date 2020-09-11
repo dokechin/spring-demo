@@ -50,7 +50,7 @@
         <tr>
             <th>利用場所</th>
             <td>
-                <input type="date" name="usePlace" th:field="*{usePlace}" placeholder="20文字以内">
+                <input type="text" name="usePlace" th:field="*{usePlace}" placeholder="20文字以内">
                 <div th:if="${#fields.hasErrors('usePlace')}" th:errors="*{usePlace}" class="error"></div>
             </td>
         </tr>
@@ -58,7 +58,7 @@
     </table>
     <input type="submit" value="更新">
 </form>
-<a href="index.html" th:href="@{/}">メニューに戻る</a>
+<a href="../index.html" th:href="@{/}">メニューに戻る</a>
 <a href="index.html" th:href="@{/tuseresult/index}">一覧に戻る</a>
 
 </body>

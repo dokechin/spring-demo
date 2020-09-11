@@ -15,25 +15,29 @@ import com.example.demo.model.TUseResult;
 public class TUseResultForm {
 
     private Integer id;
-    // TODO 3-01 検証アノテーションを付加する（空白不可、長さ1から32まで）
+
+    // 検証アノテーション（空白不可、長さ1から3まで）
     @NotBlank
     @Length(min = 1, max = 3)
     private String userCd;
 
-    // TODO 3-02 検証アノテーションを確認する（変更不要）
+    // 検証アノテーション（空白不可、長さ1から3まで）
     @NotBlank
     @Length(min = 1, max = 3)
     private String musicCd;
 
+    // 検証アノテーション（空白不可、1から99999）
     @NotNull
     @Min(1)
     @Max(99999)
     private BigDecimal amount;
 
+    // 検証アノテーション（日付形式）
     @DateTimeFormat(pattern="uuuu/MM/dd")
     private LocalDate useDate;
 
-    @Length(min = 1, max = 20)
+    // 検証アノテーション（長さ20まで）
+    @Length(min=0, max = 20)
     private String usePlace;
 
     public TUseResultForm(Integer id, String userCd,String musicCd, BigDecimal amount,
@@ -48,7 +52,7 @@ public class TUseResultForm {
 	}
 
     /**
-     * フィールドがすべて空（null）のCustomerFormインスタンスを生成するメソッド
+     * フィールドがすべて空（null）のTUseResultFormインスタンスを生成するメソッド
      */
     public static TUseResultForm createEmptyForm() {
         return new TUseResultForm(null, null, null, null, null, null);

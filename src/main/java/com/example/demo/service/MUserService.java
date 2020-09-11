@@ -6,14 +6,13 @@ import org.springframework.stereotype.Service;
 import com.example.demo.model.MUser;
 import com.example.demo.model.MUserRepository;
 
-// TODO 2-02 ビジネスロジッククラスのBeanであることを示すアノテーションを付加する
+// ビジネスロジッククラスのBeanであることを示すServiceアノテーションを付加する
 @Service
 public class MUserService {
 
-    // TODO 2-03 CustomerRepositoryをコンストラクタインジェクションする
+    // MUser操作用のリポジトリをインジェクトする
 	@Autowired
     private MUserRepository mUserRepository;
-
 
     public Iterable<MUser> findAll() {
     	return mUserRepository.findAll();

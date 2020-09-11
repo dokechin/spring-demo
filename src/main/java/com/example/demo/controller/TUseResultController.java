@@ -15,74 +15,81 @@ import com.example.demo.form.TUseResultForm;
 import com.example.demo.model.TUseResult;
 import com.example.demo.service.TUseResultService;;
 
-// TODO 3-04 コントローラークラスであることを示すアノテーションを付加する
+// コントローラークラスであることを示すアノテーションを付加する
 @Controller
+// リクエストマッピング　クラス単位
 @RequestMapping("/tuseresult")
 public class TUseResultController {
 
-    // TODO 3-05 CustomerServiceをコンストラクタインジェクションする
+    // TUseResultServiceをインジェクトする
 	@Autowired
     private TUseResultService tUseResultService;
 
+    // 一覧表示遷移用のコントローラ
     @GetMapping("/index")
     public String index(Model model) {
-        // 顧客を全件検索して、その結果を顧客一覧画面に渡す
+        // 実績データを全件検索して、その結果を実績データ一覧画面に渡す
         Iterable<TUseResult> tUseResults = tUseResultService.findAll();
         model.addAttribute("tuseresults", tUseResults);
-        // src/main/resources/templates/index.htmlに遷移する
+        // src/main/resources/templates/tuseresult/index.htmlに遷移する
         return "/tuseresult/index";
     }
 
+    // 新規登録画面遷移するのコントローラメソッド
     @GetMapping("/insertMain")
     public String insertMain(Model model) {
         // フィールドが全てnullのフォームインスタンスを追加する
     	TUseResultForm form = TUseResultForm.createEmptyForm();
         model.addAttribute("tUseResultForm", form);
 
-        // src/main/resources/templates/insertMain.htmlに遷移する
+        // src/main/resources/templates/tuseresult/insertMain.htmlに遷移する
         return "/tuseresult/insertMain";
     }
 
+    // 新規登録用のコントローラ
     @PostMapping("/insertComplete")
     public String insertComplete(
-    		@Validated @ModelAttribute
-               TUseResultForm tUseResultForm,
+        @Validated @ModelAttribute("tUseResultForm")
+            TUseResultForm tUseResultForm,
             BindingResult bindingResult, Model model) {
 
-        // フォームをエンティティに変換
+    	// バリデーションエラーの場合、更新画面へ戻る
         if (bindingResult.hasErrors()) {
             model.addAttribute("tUseResultForm", tUseResultForm);
             return "/tuseresult/insertMain";
         }
     	TUseResult tUseResult = null;
         try {
+            // フォームをエンティティに変換
+        	//　指定したユーザIDと楽曲コードが存在しない場合はエラー
         	tUseResult = tUseResultService.convertToEntity(tUseResultForm);
         } catch (Exception ex) {
         	model.addAttribute("error", ex.getMessage());
             model.addAttribute("tUseResultForm", tUseResultForm);
             return "/tuseresult/insertMain";
         }
-        // 顧客をDBに追加する
+        // 実績をDBに追加する
         tUseResultService.save(tUseResult);
-        // 「/」にリダイレクトする
+        // 「/tuseresult/index」にリダイレクトする
         return "redirect:/tuseresult/index";
     }
 
     /**
-     * 社員更新画面に遷移するコントローラーメソッド。
+     * 更新画面に遷移するコントローラーメソッド
+     * パスの中に更新するIDが指定されて遷移してくる
      */
-    // updateMain()
     @GetMapping("/updateMain/{id}")
     public String updateMain(@PathVariable Integer id, Model model) {
-        // idからエンティティを引く
+        // IDからエンティティを引く
     	TUseResult tuseResult = tUseResultService.findById(id);
         model.addAttribute("tUseResultForm", TUseResultForm.createForm(tuseResult));
         return "/tuseresult/updateMain";
     }
 
+    // 更新用のコントローラ
     @PostMapping("/updateComplete")
     public String updateComplete(
-    		@Validated @ModelAttribute
+    		@Validated @ModelAttribute("tUseResultForm")
                TUseResultForm tUseResultForm,
             BindingResult bindingResult, Model model) {
 
@@ -99,9 +106,9 @@ public class TUseResultController {
             model.addAttribute("tUseResultForm", tUseResultForm);
             return "/tuseresult/updateMain";
         }
-        // 顧客をDBに追加する
+        // 実績を更新する
         tUseResultService.save(tUseResult);
-        // 「/」にリダイレクトする
+        // 「/tuseresult/index」にリダイレクトする
         return "redirect:/tuseresult/index";
     }
 

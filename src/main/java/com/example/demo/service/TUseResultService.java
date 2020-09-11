@@ -11,32 +11,39 @@ import com.example.demo.model.MUser;
 import com.example.demo.model.TUseResult;
 import com.example.demo.model.TUseResultRepository;
 
-// TODO 2-02 ビジネスロジッククラスのBeanであることを示すアノテーションを付加する
+// ビジネスロジッククラスのBeanであることを示すServiceアノテーションを付加する
 @Service
 public class TUseResultService {
 
-    // TODO 2-03 CustomerRepositoryをコンストラクタインジェクションする
+    // TUseResult操作用のリポジトリをインジェクションする
 	@Autowired
     private TUseResultRepository tUseResultRepository;
 
+    // MUser操作用のリポジトリをインジェクションする
 	@Autowired
 	private MUserService mUserService;
 
+    // MMusicS操作用のリポジトリをインジェクションする
 	@Autowired
 	private MMusicService mMusicService;
 
+	// 全件検索
     public Iterable<TUseResult> findAll() {
     	return tUseResultRepository.findAll();
     }
 
+	// IDによる検索
     public TUseResult findById(Integer id) {
     	return tUseResultRepository.findById(id).get();
     }
 
+	// エンティティの保存
     public void save(TUseResult tUseResult) {
     	tUseResultRepository.save(tUseResult);
     }
 
+	// フォームからエンティティへ変換
+    // ユーザコード,楽曲コードが存在しない場合Exception
 	public TUseResult convertToEntity(TUseResultForm form) throws Exception{
 		MUser user = mUserService.findByUserCd(form.getUserCd());
 		if (user == null) {
