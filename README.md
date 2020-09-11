@@ -19,7 +19,7 @@
 
 ## 実行
 1. Eclipseからサーバーを起動します（プロジェクト右クリックして[Run as-> Spring Boot App]を選択）。
-2.ブラウザからアドレス「localhost：8888」にアクセスします
+2. ブラウザからアドレス「localhost：8888」にアクセスします
 
 ## その他
 
@@ -27,7 +27,7 @@
 * テンプレート（ビュー）：src/main/resources/templates folder
 * コントローラー（コントローラー）：src/main/java/com/example/demo/controller folder
 * メイン：src / main / javaフォルダーのDemoApplicationクラス
-* データベースの内容を表示して管理するには、アドレスlocalhost:8888/consoleにアクセスします JDBC URLをjdbc:h2:./databaseに変更してConnectしてください
+* データベースの内容を表示して管理するには、アドレス「localhost:8888/console」にアクセスします JDBC URLをjdbc:h2:./databaseに変更してConnectしてください
 * 構成パラメーター：/src/main/resourcesフォルダーのapplication.propertiesファイル
 * スタイルファイル（* .css）は、src/main/resources/static/css /フォルダーに配置する必要があります。 staticフォルダーとcssフォルダーが存在しない場合は作成します。
 * JavaScriptファイル（* .js）は、src / main/resources/static/js /フォルダーに配置する必要があります。 staticフォルダーとjsフォルダーが存在しない場合は作成します。
