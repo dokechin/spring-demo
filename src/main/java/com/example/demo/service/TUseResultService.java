@@ -27,6 +27,10 @@ public class TUseResultService {
 	@Autowired
 	private MMusicService mMusicService;
 
+	// メッセージ取得用サービス
+	@Autowired
+	private MessageService messageService;
+
 	// 全件検索
     public Iterable<TUseResult> findAll() {
     	return tUseResultRepository.findAll();
@@ -47,11 +51,11 @@ public class TUseResultService {
 	public TUseResult convertToEntity(TUseResultForm form) throws Exception{
 		MUser user = mUserService.findByUserCd(form.getUserCd());
 		if (user == null) {
-			throw new Exception("user not found");
+			throw new Exception(messageService.getMessage("E10001"));
 		}
 		MMusic music = mMusicService.findByMusicCd(form.getMusicCd());
 		if (music == null ) {
-			throw new Exception ("music not found");
+			throw new Exception (messageService.getMessage("E10002"));
 		}
 		if (form.getId() == null) {
 			return new TUseResult(user,music,form.getAmount(),form.getUseDate(),form.getUsePlace(),LocalDate.now(),null);
