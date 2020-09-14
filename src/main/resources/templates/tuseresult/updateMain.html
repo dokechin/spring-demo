@@ -4,13 +4,13 @@
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
-    <title>Customers</title>
+    <title>実績データ　更新</title>
     <link rel="stylesheet" href="../static/css/style.css"
           th:href="@{/css/style.css}">
 </head>
 <body>
 
-<h1>実績データ　更新</h1>
+<h1>&nbsp;&nbsp;実績データ　更新</h1>
 <div th:if="${error}" th:text="${error}" class="error"></div>
 
 <form method="post" action="index.html" th:action="@{/tuseresult/updateComplete}" th:object="${tUseResultForm}">
@@ -22,35 +22,35 @@
         <tr>
             <th>ユーザID</th>
             <td>
-                <input type="text" name="userCd" th:field="*{userCd}" placeholder="3文字以内">
+                <input type="text" th:field="*{userCd}" placeholder="3文字以内">
                 <div th:if="${#fields.hasErrors('userCd')}" th:errors="*{userCd}" class="error"></div>
             </td>
         </tr>
         <tr>
             <th>楽曲コード</th>
             <td>
-                <input type="text" name="musicCd" th:field="*{musicCd}" placeholder="3文字以内">
+                <input type="text" th:field="*{musicCd}" placeholder="3文字以内">
                 <div th:if="${#fields.hasErrors('musicCd')}" th:errors="*{musicCd}" class="error"></div>
             </td>
         </tr>
         <tr>
             <th>金額</th>
             <td>
-                <input type="text" name="amount" th:field="*{amount}" placeholder="99999以内">
+                <input type="text" th:field="*{amount}" placeholder="99999以内">
                 <div th:if="${#fields.hasErrors('amount')}" th:errors="*{amount}" class="error"></div>
             </td>
         </tr>
         <tr>
             <th>利用日</th>
             <td>
-                <input type="text" name="useDate" th:field="*{useDate}" placeholder="uuuu/MM/dd">
+                <input type="text" th:field="*{useDate}" placeholder="uuuu/MM/dd">
                 <div th:if="${#fields.hasErrors('useDate')}" th:errors="*{useDate}" class="error"></div>
             </td>
         </tr>
         <tr>
             <th>利用場所</th>
             <td>
-                <input type="text" name="usePlace" th:field="*{usePlace}" placeholder="20文字以内">
+                <input type="text th:field="*{usePlace}" placeholder="20文字以内">
                 <div th:if="${#fields.hasErrors('usePlace')}" th:errors="*{usePlace}" class="error"></div>
             </td>
         </tr>
