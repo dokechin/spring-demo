@@ -33,11 +33,11 @@ public class DemoApplication {
 			MUser user = new MUser("1", "秋元康","1",LocalDate.of(1997, 1, 23), LocalDate.of(1997, 1, 24));
 			mUserService.save(user);
 			MMusic music = new MMusic("1", "川の流れのように",
-					"1",new BigDecimal(1002),
-					"2",new BigDecimal(102),
-					"3",new BigDecimal(522),
-					"4",new BigDecimal(632),
-					"5",new BigDecimal(874),
+					"1",new BigDecimal(20),
+					"2",new BigDecimal(20),
+					"3",new BigDecimal(20),
+					"4",new BigDecimal(20),
+					"5",new BigDecimal(20),
 					LocalDate.of(1997, 1, 23), LocalDate.of(1997, 1, 24));
 			mMusicService.save(music);
 

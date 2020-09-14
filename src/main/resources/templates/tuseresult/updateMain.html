@@ -50,7 +50,7 @@
         <tr>
             <th>利用場所</th>
             <td>
-                <input type="text th:field="*{usePlace}" placeholder="20文字以内">
+                <input type="text" th:field="*{usePlace}" placeholder="20文字以内">
                 <div th:if="${#fields.hasErrors('usePlace')}" th:errors="*{usePlace}" class="error"></div>
             </td>
         </tr>

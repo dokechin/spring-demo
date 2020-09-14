@@ -30,7 +30,7 @@
 * コントローラー（コントローラー）：src/main/java/com/example/demo/controller folder
 * サービスクラス：src/main/java/com/example/demo/service folder
 * メイン：src / main / javaフォルダーのDemoApplicationクラス
-* データベースの内容を表示して管理するには、アドレス「localhost:8888/console」にアクセスします JDBC URLをjdbc:h2:./databaseに変更してConnectしてください
+* データベースの内容を表示して管理するには、アドレス「localhost:8888/console」にアクセスします JDBC URLを『jdbc:h2:./database』に変更してConnectしてください
 * 構成パラメーター：/src/main/resourcesフォルダーのapplication.propertiesファイル
 * メッセージファイル：/src/main/resourcesフォルダーのmessages.propertiesファイル
 * スタイルファイル（* .css）は、src/main/resources/static/css /フォルダーに配置する必要があります。 staticフォルダーとcssフォルダーが存在しない場合は作成します。
