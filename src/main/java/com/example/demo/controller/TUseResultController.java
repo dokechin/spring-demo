@@ -30,6 +30,7 @@ public class TUseResultController {
     public String index(Model model) {
         // 実績データを全件検索して、その結果を実績データ一覧画面に渡す
         Iterable<TUseResult> tUseResults = tUseResultService.findAll();
+        System.out.println(tUseResults);
         model.addAttribute("tuseresults", tUseResults);
         // src/main/resources/templates/tuseresult/index.htmlに遷移する
         return "/tuseresult/index";

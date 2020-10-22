@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="UTF-8">
+<title>楽曲データ 新規登録</title>
+<link rel="stylesheet" href="../static/css/style.css"
+	th:href="@{/css/style.css}">
+</head>
+<body>
+
+	<h1>&nbsp;&nbsp;楽曲データ 新規登録</h1>
+
+	<div th:if="${error}" th:text="${error}" class="error"></div>
+
+	<form method="post" action="index.html" th:action="@{insertComplete}"
+		th:object="${mmusicForm}">
+		<table border="1">
+			<tr>
+				<th>楽曲コード</th>
+				<td><input type="text" th:field="*{musicCd}"
+					placeholder="3文字以内">
+					<div th:if="${#fields.hasErrors('musicCd')}" th:errors="*{musicCd}"
+						class="error"></div></td>
+			</tr>
+			<tr>
+				<th>楽曲名</th>
+				<td><input type="text" th:field="*{musicName}"
+					placeholder="40文字以内">
+					<div th:if="${#fields.hasErrors('musicName')}"
+						th:errors="*{musicName}" class="error"></div></td>
+			</tr>
+		</table>
+
+		<br>
+		<table border="1">
+			<tr>
+				<th>No</th>
+				<th>ユーザーID</th>
+				<th>分配率</th>
+			</tr>
+			<tr>
+				<td>1</td>
+				<td><input type="text" th:field="*{recv_user_id_1}"
+					placeholder="3文字以内">
+					<div th:if="${#fields.hasErrors('recv_user_id_1')}"
+						th:errors="*{recv_user_id_1}" class="error"></div></td>
+				<td><input type="text" th:field="*{recv_percent_1}"
+					placeholder="3文字以内">
+					<div th:if="${#fields.hasErrors('recv_percent_1')}"
+						th:errors="*{recv_percent_1}" class="error"></div></td>
+			</tr>
+			<tr>
+				<td>2</td>
+				<td><input type="text" th:field="*{recv_user_id_2}"
+					placeholder="3文字以内">
+					<div th:if="${#fields.hasErrors('recv_percent_2')}"
+						th:errors="*{recv_user_id_2}" class="error"></div></td>
+				<td><input type="text" th:field="*{recv_percent_2}"
+					placeholder="3文字以内">
+					<div th:if="${#fields.hasErrors('recv_percent_2')}"
+						th:errors="*{recv_percent_2}" class="error"></div></td>
+			</tr>
+			<tr>
+				<td>3</td>
+				<td><input type="text" th:field="*{recv_user_id_3}"
+					placeholder="3文字以内"></td>
+				<td><input type="text" th:field="*{recv_percent_3}"
+					placeholder="3文字以内"></td>
+			</tr>
+			<tr>
+				<td>4</td>
+				<td><input type="text" th:field="*{recv_user_id_4}"
+					placeholder="3文字以内"></td>
+				<td><input type="text" th:field="*{recv_percent_4}"
+					placeholder="3文字以内"></td>
+			</tr>
+			<tr>
+				<td>5</td>
+				<td><input type="text" th:field="*{recv_user_id_5}"
+					placeholder="3文字以内"></td>
+				<td><input type="text" th:field="*{recv_percent_5}"
+					placeholder="3文字以内"></td>
+			</tr>
+		</table>
+
+		<input type="submit" value="登録">
+	</form>
+	<a href="../index.html" th:href="@{/}">メニューに戻る</a>
+	<a href="index.html" th:href="@{/mmusic/index}">一覧に戻る</a>
+
+</body>
+</html>

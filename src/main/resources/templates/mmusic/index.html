@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>楽曲データ一覧</title>
+    <link rel="stylesheet" href="../static/css/style.css"
+          th:href="@{/css/style.css}">
+</head>
+<body>
+
+<h1>&nbsp;&nbsp;楽曲データ一覧</h1>
+
+<table>
+    <tr>
+        <th>No</th>
+        <th>楽曲コード</th>
+        <th>楽曲名</th>
+        <th>ユーザーID</th>
+        <th>ユーザー名</th>
+        <th>分配率</th>
+    </tr>
+
+<tr th:each="index : ${indexList}" th:object="${index}">
+		<td>
+        	<a href="updateMain.html"
+          th:href="@{|/mmusic/updateMain/*{musicCd}|}"
+          th:text="*{useResultId}">1</a></td>
+        <td th:text="*{musicCd}">Taro</td>
+        <td th:text="*{musicName}">123</td>
+        <td th:text="*{recv_user_id_1}">川の流れのように</td>
+        <td th:text="*{userName}"></td>
+        <td th:text="*{recv_percent_1}">123</td>
+</tr>
+
+    <!--/*-->
+    <tr>
+        <td>2</td>
+        <td>123</td>
+        <td>Suzuki</td>
+        <td>124</td>
+        <td>勝手にシンドバッド</td>
+        <td>1023</td>
+        <td>2000-01-02</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>123</td>
+        <td>Suzuki</td>
+        <td>125</td>
+        <td>北の宿</td>
+        <td>1125</td>
+        <td>2011-11-12</td>
+    </tr>
+    <!--*/-->
+</table>
+<form th:action="@{/mmusic/insertMain}" action="insertMain.html" method="get">
+    <input type="submit" value="新規登録">
+</form>
+
+<a href="../index.html" th:href="@{/}">メニューに戻る</a>
+
+</body>
+</html>
