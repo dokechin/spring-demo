@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,11 +15,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.example.demo.dto.MMusicDto;
+import com.example.demo.entity.MMusic;
+import com.example.demo.entity.MUser;
 import com.example.demo.form.MMusicForm;
-import com.example.demo.model.Index;
-import com.example.demo.model.MMusic;
-import com.example.demo.model.MUser;
-import com.example.demo.model.UpdateMain;
+import com.example.demo.form.MMusicUpdateForm;
 import com.example.demo.service.MMusicService;
 import com.example.demo.service.MUserService;;
 
@@ -40,33 +41,17 @@ public class MMusicController {
 	@Autowired
 	private MUserService mUserService;
 
+	@Autowired
+	private ModelMapper modelMapper;
+
 	// 一覧表示遷移用のコントローラ
 	@GetMapping("/index")
 	public String index(Model model) {
-		// 楽曲データを全件検索して、その結果を楽曲データ一覧画面に渡す
-		List<Index> indexList = new ArrayList<Index>();
 
 		//Listにデータを入れて、一覧表示に必要なデータをgetできるようにする。
-		List<MMusic> mMusicList = (List<MMusic>) mMusicService.findAll();
-		List<MUser> mUserList = (List<MUser>) mUserService.findAll();
+		List<MMusicDto> mMusicList = (List<MMusicDto>) mMusicService.findMMusicAll();
 
-		//for文でmusicCdに対応したuserNameを表示するようにするためにnewする。
-		MUser mUser = new MUser();
-
-		//一覧表示に必要なデータのフィールドを持つindex1にデータを入れ、mMusicsListの要素数だけ繰り返しindex1をindexListに入れいていく。
-		for(int i=0;i < mMusicList.size(); i++) {
-			Index index1 = new Index();
-			index1.setUseResultId(mUserList.get(i).getUserId());
-			index1.setMusicCd(mMusicList.get(i).getMusicCd());
-			index1.setMusicName(mMusicList.get(i).getMusicName());
-			index1.setRecv_percent_1(mMusicList.get(i).getRecv_percent_1());
-			mUser = mUserService.findById(Integer.parseInt(mMusicList.get(i).getRecv_user_id_1()));
-			index1.setUserName(mUser.getUserName());
-			index1.setRecv_user_id_1(mMusicList.get(i).getRecv_user_id_1());
-			indexList.add(index1);
-		}
-
-		model.addAttribute("indexList", indexList);
+		model.addAttribute("indexList", mMusicList);
 
 		return "/mmusic/index";
 	}
@@ -166,8 +151,9 @@ public class MMusicController {
 			}
 		}
 
-		UpdateMain updateMain = new UpdateMain();
+		MMusicUpdateForm updateMain = new MMusicUpdateForm();
 
+		updateMain.setMusicId(mmusicForm.getMusicId());
 		updateMain.setMusicCd(mmusicForm.getMusicCd());
 		updateMain.setMusicName(mmusicForm.getMusicName());
 		updateMain.setRecv_user_id_1(mmusicForm.getRecv_user_id_1());
@@ -198,7 +184,7 @@ public class MMusicController {
 			updateMain.setUserName5(mUserList.get(4).getUserName());
 		}
 
-		model.addAttribute("updateMain",updateMain);
+		model.addAttribute("mMusicUpdateForm",updateMain);
 
 		return "/mmusic/updateMain";
 	}
@@ -207,41 +193,21 @@ public class MMusicController {
 	@PostMapping("/updateComplete")
 	public String updateComplete(
 			@Validated @ModelAttribute("updateMain")
-			UpdateMain updateMain,
+			MMusicUpdateForm mmusicUpdateForm,
 			BindingResult bindingResult, Model model) {
 
-		//更新ではhtmlファイルとUpdateMain型で値をやり取りするが、新規登録ではMMusicForm型でやり取りしているので、updateMainの中身をMMusicForm型のmmusicFormにsetしてからconvertToEntity()を使う
-		MMusicForm mmusicForm = new MMusicForm(null, null, null, null, null, null, null, null, null, null, null, null);
-
-		mmusicForm.setMusicCd(updateMain.getMusicCd());
-		mmusicForm.setMusicName(updateMain.getMusicName());
-		mmusicForm.setRecv_user_id_1(updateMain.getRecv_user_id_1());
-		mmusicForm.setRecv_percent_1(updateMain.getRecv_percent_1());
-		mmusicForm.setRecv_user_id_2(updateMain.getRecv_user_id_2());
-		mmusicForm.setRecv_percent_2(updateMain.getRecv_percent_2());
-		mmusicForm.setRecv_user_id_3(updateMain.getRecv_user_id_3());
-		mmusicForm.setRecv_percent_3(updateMain.getRecv_percent_3());
-		mmusicForm.setRecv_user_id_4(updateMain.getRecv_user_id_4());
-		mmusicForm.setRecv_percent_4(updateMain.getRecv_percent_4());
-		mmusicForm.setRecv_user_id_5(updateMain.getRecv_user_id_5());
-		mmusicForm.setRecv_percent_5(updateMain.getRecv_percent_5());
-		mmusicForm.setUserName1(updateMain.getUserName1());
-		mmusicForm.setUserName2(updateMain.getUserName2());
-		mmusicForm.setUserName3(updateMain.getUserName3());
-		mmusicForm.setUserName4(updateMain.getUserName4());
-		mmusicForm.setUserName5(updateMain.getUserName5());
 
 		// バリデーションエラーの場合、更新画面へ戻る
 		if (bindingResult.hasErrors()) {
-			model.addAttribute("updateMain", updateMain);
+			model.addAttribute("mMusicUpdateForm", mmusicUpdateForm);
 			return "/mmusic/updateMain";
 		}
 
 		MMusic mmusic = null;
 
 		try {
-			// フォームをエンティティに変換
-			//入力にエラーがあった場合は、エラーメッセージがcatchされる
+			// フォームをマッパーを使って変換
+			MMusicForm mmusicForm = modelMapper.map(mmusicUpdateForm, MMusicForm.class);
 			mmusic = mMusicService.convertToEntity(mmusicForm);
 		} catch (Exception ex) {
 			String message = "";
@@ -252,14 +218,14 @@ public class MMusicController {
 			}
 			System.out.println("ex.getMessage() = " + ex.getMessage());
 			model.addAttribute("error", message);
-			model.addAttribute("updateMain", updateMain);
+			model.addAttribute("mMusicUpdateForm", mmusicUpdateForm);
 
 			return "/mmusic/updateMain";
 		}
 
 		//楽曲データを更新する
 		//BeanとFormが同じになっているので、saveはしない　保留
-		//mMusicService.save(mmusic);
+		mMusicService.save(mmusic);
 		// 「/mmusic/index」にリダイレクトする
 		return "redirect:/mmusic/index";
 	}

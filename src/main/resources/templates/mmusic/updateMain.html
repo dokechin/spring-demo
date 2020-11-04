@@ -13,7 +13,7 @@
 	<div th:if="${error}" th:text="${error}" class="error"></div>
 
 	<form method="post" action="index.html"
-		th:action="@{/mmusic/updateComplete}" th:object="${updateMain}">
+		th:action="@{/mmusic/updateComplete}" th:object="${mMusicUpdateForm}">
 
 		<table border="1">
 			<tr>
@@ -107,6 +107,7 @@
 					<div th:if="${#fields.hasErrors('recv_percent_5')}"
 						th:errors="*{recv_percent_5}" class="error"></div></td>
 			</tr>
+			<input type="hidden" th:field="*{musicId}">
 			<input type="hidden" th:field="*{musicCd}">
 			<input type="hidden" th:field="*{userName1}">
 			<input type="hidden" th:field="*{userName2}">

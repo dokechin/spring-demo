@@ -5,11 +5,11 @@ import java.time.LocalDate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.entity.MMusic;
+import com.example.demo.entity.MUser;
+import com.example.demo.entity.TUseResult;
 import com.example.demo.form.TUseResultForm;
-import com.example.demo.model.MMusic;
-import com.example.demo.model.MUser;
-import com.example.demo.model.TUseResult;
-import com.example.demo.model.TUseResultRepository;
+import com.example.demo.repository.TUseResultRepository;
 
 // ビジネスロジッククラスのBeanであることを示すServiceアノテーションを付加する
 @Service

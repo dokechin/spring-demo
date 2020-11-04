@@ -8,9 +8,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import com.example.demo.model.MMusic;
-import com.example.demo.model.MUser;
-import com.example.demo.model.TUseResult;
+import com.example.demo.entity.MMusic;
+import com.example.demo.entity.MUser;
+import com.example.demo.entity.TUseResult;
 import com.example.demo.service.MMusicService;
 import com.example.demo.service.MUserService;
 import com.example.demo.service.TUseResultService;

@@ -11,7 +11,7 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import com.example.demo.model.TUseResult;
+import com.example.demo.entity.TUseResult;
 public class TUseResultForm {
 
     private Integer id;

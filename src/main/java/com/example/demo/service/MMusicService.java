@@ -8,11 +8,12 @@ import java.util.regex.Pattern;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.dto.MMusicDto;
+import com.example.demo.entity.MMusic;
+import com.example.demo.entity.MUser;
 import com.example.demo.form.MMusicForm;
-import com.example.demo.model.MMusic;
-import com.example.demo.model.MMusicRepository;
-import com.example.demo.model.MUser;
-import com.example.demo.model.MUserRepository;
+import com.example.demo.repository.MMusicRepository;
+import com.example.demo.repository.MUserRepository;
 
 // ビジネスロジッククラスのBeanであることを示すServiceアノテーションを付加する
 @Service
@@ -52,6 +53,10 @@ public class MMusicService {
 	// 楽曲コードによる検索
 	public MMusic findByMusicCd(String musicCd) {
 		return mMusicRepository.findByMusicCd(musicCd);
+	}
+
+	public List<MMusicDto> findMMusicAll(){
+		return mMusicRepository.findMMusicAll();
 	}
 
 	// エンティティの保存
@@ -171,7 +176,7 @@ public class MMusicService {
 			throw new Exception (message);
 		}
 
-		return new MMusic(form.getId(), form.getMusicCd(),form.getMusicName(), form.getRecv_user_id_1(),form.getRecv_percent_1(),
+		return new MMusic(form.getMusicId(), form.getMusicCd(),form.getMusicName(), form.getRecv_user_id_1(),form.getRecv_percent_1(),
 				form.getRecv_user_id_2(), form.getRecv_percent_2(), form.getRecv_user_id_3(), form.getRecv_percent_3(),
 				form.getRecv_user_id_4(), form.getRecv_percent_4(), form.getRecv_user_id_5(), form.getRecv_percent_5(),
 				LocalDate.now(),null);

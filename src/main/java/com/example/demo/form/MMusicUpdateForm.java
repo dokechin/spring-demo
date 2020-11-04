@@ -1,4 +1,4 @@
-package com.example.demo.model;
+package com.example.demo.form;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -18,13 +18,13 @@ import org.hibernate.validator.constraints.Length;
  * DBのMMusicテーブルとMUserから楽曲データ更新表示に必要なフィールドを持つエンティティクラス
  */
 @Entity
-public class UpdateMain {
+public class MMusicUpdateForm {
 
 	// 主キーであることを示すアノテーション
 	// 主キーの自動生成用のアノテーション
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer Id;
+	private Integer musicId;
 
 	private String musicCd;
 
@@ -90,12 +90,12 @@ public class UpdateMain {
 	private String userName4 = " ";
 	private String userName5 = " ";
 
-	public Integer getId() {
-		return Id;
+	public Integer getMusicId() {
+		return musicId;
 	}
 
-	public void setUseResultId(Integer Id) {
-		this.Id = Id;
+	public void setMusicId(Integer musicId) {
+		this.musicId = musicId;
 	}
 
 	public String getMusicCd() {
@@ -254,7 +254,7 @@ public class UpdateMain {
 	@Override
 	public String toString() {
 		return "UpdateMain{" +
-				"Id=" + Id +
+				"Id=" + musicId +
 				", musicName='" + musicName  + "musicCd=" + musicCd + "userName1=" + userName1 + "userName2=" + userName2 + "userName3=" + userName3 + "userName4=" + userName4 + "userName5=" + userName5 + '\'' +
 				'}';
 	}

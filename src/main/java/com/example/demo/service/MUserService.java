@@ -3,8 +3,8 @@ package com.example.demo.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.model.MUser;
-import com.example.demo.model.MUserRepository;
+import com.example.demo.entity.MUser;
+import com.example.demo.repository.MUserRepository;
 
 // ビジネスロジッククラスのBeanであることを示すServiceアノテーションを付加する
 @Service

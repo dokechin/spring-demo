@@ -9,10 +9,10 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
 
-import com.example.demo.model.MMusic;
+import com.example.demo.entity.MMusic;
 public class MMusicForm {
 
-	private Integer id;
+	private Integer musicId;
 
 	// 検証アノテーション（空白不可、長さ1から3まで）
 	@NotBlank
@@ -77,9 +77,13 @@ public class MMusicForm {
 	private String userName4 = " ";
 	private String userName5 = " ";
 
-	public MMusicForm(String musicCd, String musicName,
+	public MMusicForm() {
+	}
+
+	public MMusicForm(Integer musicId, String musicCd, String musicName,
 			String recv_user_id_1,BigDecimal recv_percent_1, String recv_user_id_2,BigDecimal recv_percent_2, String recv_user_id_3,BigDecimal recv_percent_3, String recv_user_id_4,BigDecimal recv_percent_4, String recv_user_id_5,BigDecimal recv_percent_5) {
 		super();
+		this.musicId = musicId;
 		this.musicCd = musicCd;
 		this.musicName = musicName;
 		this.recv_user_id_1 = recv_user_id_1;
@@ -96,12 +100,13 @@ public class MMusicForm {
 
 	//フィールドがすべて空（null）のMMusicFormインスタンスを生成するメソッド
 	public static MMusicForm createEmptyForm() {
-		return new MMusicForm(null, null, null, null, null,null,null,null,null,null,null,null);
+		return new MMusicForm(null, null, null, null, null, null,null,null,null,null,null,null,null);
 	}
 
 	public MMusicForm createForm(MMusic src) {
 
-		return new MMusicForm(src.getMusicCd(),
+		return new MMusicForm(src.getMusicId(),
+				src.getMusicCd(),
 				src.getMusicName(),
 				src.getRecv_user_id_1(),
 				src.getRecv_percent_1(),
@@ -118,7 +123,8 @@ public class MMusicForm {
 
 	public static MMusicForm createFormSt(MMusic src) {
 
-		return new MMusicForm(src.getMusicCd(),
+		return new MMusicForm(src.getMusicId(),
+				src.getMusicCd(),
 				src.getMusicName(),
 				src.getRecv_user_id_1(),
 				src.getRecv_percent_1(),
@@ -133,12 +139,12 @@ public class MMusicForm {
 				);
 	}
 
-	public Integer getId() {
-		return id;
+	public Integer getMusicId() {
+		return musicId;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setMusicId(Integer musicId) {
+		this.musicId = musicId;
 	}
 
 	public String getMusicCd() {

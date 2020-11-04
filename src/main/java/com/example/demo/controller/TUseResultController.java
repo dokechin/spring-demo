@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.example.demo.entity.TUseResult;
 import com.example.demo.form.TUseResultForm;
-import com.example.demo.model.TUseResult;
 import com.example.demo.service.TUseResultService;;
 
 // コントローラークラスであることを示すアノテーションを付加する
